@@ -7,7 +7,8 @@ const resolvers = require('./resolvers');
 const {findOrCreateUser} = require('./controllers/userController');
 
 mongoose.connect(process.env.MONGO_URI, {
-    useNewUrlParser: true
+    useNewUrlParser: true,
+    useUnifiedTopology: true // добавил после ругани при подключении
 })
     .then(() => console.log('DB connected!'))
     .catch((err) => console.log('Err DB connected!', err));
