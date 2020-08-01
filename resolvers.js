@@ -10,7 +10,11 @@ const autenticated = next => (root, args, ctx, info) => {
 
 module.exports = {
     Query: {
-        me: autenticated((root, args, ctx) => ctx.currentUser)
+        me: autenticated((root, args, ctx) => ctx.currentUser),
+        getPins: async (root, args, ctx) => {
+            const pins = await Pin.find({}).populate('author').populate('comments.author');
+            return pins;
+        },
     },
     Mutation: {
         createPin: autenticated(async (root, args, ctx) => {
