@@ -8,7 +8,9 @@ const {findOrCreateUser} = require('./controllers/userController');
 
 mongoose.connect(process.env.MONGO_URI, {
     useNewUrlParser: true,
-    useUnifiedTopology: true // добавил после ругани при подключении
+    useUnifiedTopology: true, // добавил после ругани при подключении
+    // https://mongoosejs.com/docs/deprecations.html#findandmodify
+    useFindAndModify: false,
 })
     .then(() => console.log('DB connected!'))
     .catch((err) => console.log('Err DB connected!', err));
