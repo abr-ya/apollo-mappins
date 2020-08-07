@@ -18,6 +18,8 @@ mongoose.connect(process.env.MONGO_URI, {
 const server = new ApolloServer({
     typeDefs,
     resolvers,
+    introspection: true, // for test
+    playground: true, // for test
     context: async ({req}) => {
 		let authToken = null
 		let currentUser = null
